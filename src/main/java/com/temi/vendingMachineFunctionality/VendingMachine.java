@@ -11,7 +11,17 @@ public class VendingMachine {
     private static final double DIMEVALUE = 0.10;
     private static final double QUARTERVALUE = 0.25;
 
-    HashMap<String, Integer> coinValueMap = new HashMap<>();
+    Coin[] coins = Coin.values();
+    HashMap<Coin, Double> coinValueMap = new HashMap<>();
+
+
+    public void createMap(){
+        coinValueMap.put(coins[0], PENNYVALUE);
+        coinValueMap.put(coins[1], NICKELVALUE);
+        coinValueMap.put(coins[2], DIMEVALUE);
+        coinValueMap.put(coins[3], QUARTERVALUE);
+    }
+
     public double getCoinValue(Coin myCoin){
         if(myCoin.getEDGE().equals("plain")){
             if(myCoin.getWEIGHT().equals("2.5")
