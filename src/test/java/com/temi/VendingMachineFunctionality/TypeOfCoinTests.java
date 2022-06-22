@@ -16,24 +16,27 @@ public class TypeOfCoinTests {
         assertEquals(Coin.PENNY, expectedCoin);
     }
 
-    private void testTypeOfCoinWhenExpectedCoinIsDime(){
+    @Test
+     void testTypeOfCoinWhenExpectedCoinIsDime(){
         Coin inputCoin = Coin.DIME;
         VendingMachine myMachine = new VendingMachine();
-        Coin expectedCoin = myMachine.measureCoinDimensions(inputCoin);
-        assertEquals(Coin.PENNY, expectedCoin);
+        Coin actualCoin = myMachine.measureCoinDimensions(inputCoin);
+        assertEquals(Coin.DIME, actualCoin);
     }
 
-    private void testTypeOfCoinWhenExpectedCoinIsNickel(){
+    @Test
+     void testTypeOfCoinWhenExpectedCoinIsNickel(){
         Coin inputCoin = Coin.NICKEL;
         VendingMachine myMachine = new VendingMachine();
-        Coin expectedCoin = myMachine.measureCoinDimensions(inputCoin);
-        assertEquals(Coin.PENNY, expectedCoin);
+        Coin actualCoin = myMachine.measureCoinDimensions(inputCoin);
+        assertEquals(Coin.NICKEL, actualCoin);
     }
 
-    private void testTypeOfCoinWhenExpectedCoinIsQuarter(){
+    @Test
+     void testTypeOfCoinWhenExpectedCoinIsQuarter(){
         Coin inputCoin = Coin.QUARTER;
         VendingMachine myMachine = new VendingMachine();
-        Coin expectedCoin = myMachine.measureCoinDimensions(inputCoin);
-        assertEquals(Coin.PENNY, expectedCoin);
+        Coin actualCoin = myMachine.measureCoinDimensions(inputCoin);
+        assertEquals(Coin.QUARTER, actualCoin);
     }
 }
