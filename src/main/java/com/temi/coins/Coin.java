@@ -9,7 +9,6 @@ public enum Coin {
     private final String WEIGHT;
     private final String DIAMETER;
     private final String THICKNESS;
-
     private final String EDGE;
     private final String NUMBEROFREEDS;
 
