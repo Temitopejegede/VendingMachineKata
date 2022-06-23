@@ -1,6 +1,8 @@
 package com.temi.vendingMachineFunctionality;
 
-import com.temi.coins.*;
+import com.temi.coins.Coin;
+import com.temi.inputs.Inputs;
+import com.temi.item.Item;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,13 +18,25 @@ public class VendingMachine {
     private static final double PRICEOFCHIPS = 0.50;
     private static final double PRICEOFCANDY = 0.65;
     HashMap<Coin, Double> coinValueMap = new HashMap<>();
+    HashMap<Item, Double> itemValueMap = new HashMap<>();
+
+    //think of method to generate arraylist with custom number of values and coins
+    ArrayList<Coin> inputs = new Inputs().generateRandomCoins();
 
     public VendingMachine(){
         mapCoinValue();
+        mapItemValue();
+
     }
 
     public String checkDisplay(){
         return "INSERT COIN";
+    }
+    public String checkDisplayWhenItemHasJustBeenBought(){
+        return "THANK YOU";
+    }
+    public String displayWhenMoneyIsNotEnough(Item item){
+        return "PRICE: "+ itemValueMap.get(item);
     }
 
     public void mapCoinValue(){
@@ -30,6 +44,12 @@ public class VendingMachine {
         coinValueMap.put(Coin.NICKEL, NICKELVALUE);
         coinValueMap.put(Coin.DIME, DIMEVALUE);
         coinValueMap.put(Coin.QUARTER, QUARTERVALUE);
+    }
+
+    public void mapItemValue(){
+        itemValueMap.put(Item.COLA, PRICEOFCOLA);
+        itemValueMap.put(Item.CANDY, PRICEOFCANDY);
+        itemValueMap.put(Item.CHIPS, PRICEOFCHIPS);
     }
 
 
@@ -57,6 +77,7 @@ public class VendingMachine {
         return null;
     }
 
+    //probably redundant
     public boolean checkIfCoinTypeExists(Coin myCoin){
         return coinValueMap.containsKey(myCoin);
     }
@@ -74,21 +95,20 @@ public class VendingMachine {
     public double getHowMuchMoneyWasInserted(ArrayList<Coin> coins){
         double money = 0.0;
         for(Coin currentCoin: coins){
-            if(checkIfCoinIsValidForVendingMachine(currentCoin)){
+            if(checkIfCoinIsValidForVendingMachine(currentCoin) && checkIfCoinTypeExists(currentCoin)){
                 money += getCoinValue(currentCoin);
             }
         }
         return  money;
     }
-//    public String selectCola(){
-//        if()
-//    }
-//
-//    public String selectChips(){
-//
-//    }
-//
-//    public String selectCandy(){
-//
-//    }
+    public void selectItem(Item snack){
+        if(getHowMuchMoneyWasInserted(inputs) < itemValueMap.get(snack) ){
+            displayWhenMoneyIsNotEnough(snack);
+        }
+
+        if(getHowMuchMoneyWasInserted(inputs) > itemValueMap.get(snack)){
+            checkDisplayWhenItemHasJustBeenBought();
+        }
+    }
+
 }
