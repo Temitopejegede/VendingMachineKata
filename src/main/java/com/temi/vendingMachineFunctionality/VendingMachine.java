@@ -19,13 +19,18 @@ public class VendingMachine {
     private static final double PRICEOFCANDY = 0.65;
     HashMap<Coin, Double> coinValueMap = new HashMap<>();
     HashMap<Item, Double> itemValueMap = new HashMap<>();
+    private double money;
+
+
 
     //think of method to generate arraylist with custom number of values and coins
     ArrayList<Coin> inputs = new Inputs().generateRandomCoins();
 
+
     public VendingMachine(){
         mapCoinValue();
         mapItemValue();
+        this.money = money;
 
     }
 
@@ -93,22 +98,97 @@ public class VendingMachine {
     }
 
     public double getHowMuchMoneyWasInserted(ArrayList<Coin> coins){
-        double money = 0.0;
         for(Coin currentCoin: coins){
             if(checkIfCoinIsValidForVendingMachine(currentCoin) && checkIfCoinTypeExists(currentCoin)){
-                money += getCoinValue(currentCoin);
+                this.money += getCoinValue(currentCoin);
             }
         }
         return  money;
     }
     public void selectItem(Item snack){
-        if(getHowMuchMoneyWasInserted(inputs) < itemValueMap.get(snack) ){
-            displayWhenMoneyIsNotEnough(snack);
-        }
+//        if(getHowMuchMoneyWasInserted(inputs) < itemValueMap.get(snack) ){
+//            displayWhenMoneyIsNotEnough(snack);
+//        }
+//
+//        if(getHowMuchMoneyWasInserted(inputs) >= itemValueMap.get(snack)){
+//            checkDisplayWhenItemHasJustBeenBought();
+//        }
+        this.money = this.money - itemValueMap.get(snack);
+    }
 
-        if(getHowMuchMoneyWasInserted(inputs) > itemValueMap.get(snack)){
-            checkDisplayWhenItemHasJustBeenBought();
+    public ArrayList<Coin> inputCoins(ArrayList<Coin> coins){
+        return coins;
+    }
+
+    public double returnChangeNumber(){
+        return money;
+    }
+    public ArrayList<Double> returnChangeAmount(){
+        ArrayList<Double> changeInCoins = new ArrayList<>();
+        int temp = (int)(money*100);
+        int divisor = 0;
+
+    while (temp >= 0) {
+        if (temp >= (int) (QUARTERVALUE * 100)) {
+            divisor = temp / (int) (QUARTERVALUE * 100);
+            for (int i = 0; i < divisor; i++) changeInCoins.add(QUARTERVALUE);
+            temp =- ((int) (QUARTERVALUE * 100) * divisor);
+        }
+        if (temp >= (int) (DIMEVALUE * 100)) {
+            divisor = temp / (int) (DIMEVALUE * 100);
+            for (int i = 0; i < divisor; i++) changeInCoins.add(DIMEVALUE);
+            temp = temp - ((int) (DIMEVALUE * 100) * divisor);
+
+        }
+        if (temp >= (int) (NICKELVALUE * 100)) {
+            divisor = temp / (int) (NICKELVALUE * 100);
+            for (int i = 0; i < divisor; i++) changeInCoins.add(NICKELVALUE);
+            temp = temp - ((int) (NICKELVALUE * 100) * divisor);
+
+        }
+        if(temp >= (int)(PENNYVALUE*100)) {
+            divisor = temp / (int) (PENNYVALUE * 100);
+            for (int i = 0; i < divisor; i++) changeInCoins.add(PENNYVALUE);
+            temp = temp - ((int) (PENNYVALUE * 100) * divisor);
+
         }
     }
 
+        return changeInCoins;
+    }
+
+    public ArrayList<Coin> returnChangeInCoins(double money){
+        double change = money;
+        ArrayList<Coin> changeInCoins = new ArrayList<>();
+        int temp = (int)(money*100);
+        int divisor = 0;
+
+
+            if(temp > (int)(QUARTERVALUE*100)){
+                divisor = temp/(int)(QUARTERVALUE*100);
+                temp = temp - ((int)(QUARTERVALUE*100)*divisor);
+                for(int i = 0; i<divisor;i++) changeInCoins.add(Coin.QUARTER);
+            }
+            else if(temp > (int)(DIMEVALUE*100)){
+                divisor = temp/(int)(DIMEVALUE*100);
+                temp = temp - ((int)(DIMEVALUE*100)*divisor);
+                for(int i = 0; i<divisor;i++) changeInCoins.add(Coin.DIME);
+            }
+            else if(temp > (int)(NICKELVALUE*100)){
+                divisor = temp/(int)(NICKELVALUE*100);
+                temp = temp - ((int)(NICKELVALUE*100)*divisor);
+                for(int i = 0; i<divisor;i++) changeInCoins.add(Coin.NICKEL);
+            }
+            else {
+                divisor = temp/(int)(PENNYVALUE*100);
+                temp = temp - ((int)(PENNYVALUE*100)*divisor);
+                for(int i = 0; i<divisor;i++) changeInCoins.add(Coin.PENNY);
+            }
+
+            return changeInCoins;
+    }
+
+    public double getMoney() {
+        return money;
+    }
 }
