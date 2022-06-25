@@ -1,18 +1,20 @@
 package com.temi.coins;
 
 public enum Coin {
-    PENNY("2.5", "19.05", "1.52", "plain", "0"),
-    NICKEL("5.0", "21.21", "1.95", "plain", "0"),
-    DIME("2.268", "17.91", "1.35", "reeded", "118"),
-    QUARTER("5.670", "24.26", "1.75", "reeded", "119");
+    PENNY("PENNY", "2.5", "19.05", "1.52", "plain", "0"),
+    NICKEL("NICKEL", "5.0", "21.21", "1.95", "plain", "0"),
+    DIME("DIME", "2.268", "17.91", "1.35", "reeded", "118"),
+    QUARTER("QUARTER", "5.670", "24.26", "1.75", "reeded", "119");
 
+    private final String NAME;
     private final String WEIGHT;
     private final String DIAMETER;
     private final String THICKNESS;
     private final String EDGE;
     private final String NUMBEROFREEDS;
 
-    Coin(String WEIGHT, String DIAMETER, String THICKNESS, String EDGE, String NUMBEROFREEDS){
+    Coin(String NAME, String WEIGHT, String DIAMETER, String THICKNESS, String EDGE, String NUMBEROFREEDS){
+        this.NAME = NAME;
         this.WEIGHT = WEIGHT;
         this.DIAMETER = DIAMETER;
         this.THICKNESS = THICKNESS;
@@ -38,6 +40,10 @@ public enum Coin {
 
     public String getNUMBEROFREEDS() {
         return NUMBEROFREEDS;
+    }
+
+    public String getNAME() {
+        return NAME;
     }
 
     @Override
