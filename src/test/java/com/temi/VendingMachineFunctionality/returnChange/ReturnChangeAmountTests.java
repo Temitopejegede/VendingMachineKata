@@ -1,4 +1,4 @@
-package com.temi.VendingMachineFunctionality;
+package com.temi.VendingMachineFunctionality.returnChange;
 
 import com.temi.coins.Coin;
 import com.temi.item.Item;
@@ -9,27 +9,66 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ReturnChangeTests {
+public class ReturnChangeAmountTests {
 
     @Test
-    void testReturnChangeWhenThereIsNone(){
+    void testReturnChangeNumberWhenTheChangeIsZero(){
+        ArrayList<Coin> money = new ArrayList<>();
+        money.add(Coin.QUARTER);
+        money.add(Coin.QUARTER);
+        money.add(Coin.QUARTER);
+        money.add(Coin.QUARTER);
+        VendingMachine myMachine = new VendingMachine();
+        ArrayList<Coin> userInput = myMachine.inputCoins(money);
+        double inputMoney = myMachine.getHowMuchMoneyWasInserted(userInput);
+        myMachine.selectItem(Item.COLA);
+        double change = myMachine.returnChangeNumber();
+        assertEquals(0, change);
+    }
+
+    @Test
+    void testReturnChangeNumberFirstTest(){
         ArrayList<Coin> money = new ArrayList<>();
         money.add(Coin.QUARTER);
         money.add(Coin.QUARTER);
         money.add(Coin.QUARTER);
         money.add(Coin.QUARTER);
         money.add(Coin.QUARTER);
-//        money.add(Coin.NICKEL);
-//        money.add(Coin.DIME);
-//        money.add(Coin.NICKEL);
+        money.add(Coin.QUARTER);
+        money.add(Coin.NICKEL);
+        money.add(Coin.PENNY);
         VendingMachine myMachine = new VendingMachine();
         ArrayList<Coin> userInput = myMachine.inputCoins(money);
         double inputMoney = myMachine.getHowMuchMoneyWasInserted(userInput);
         myMachine.selectItem(Item.COLA);
-        ArrayList<Double> change = myMachine.returnChangeAmount();
-        ArrayList<Double> answer = new ArrayList<>();
-        answer.add(0.25);
-        assertEquals(answer, change);
+        double change = myMachine.returnChangeNumber();
+        assertEquals(0.55, change);
+    }
+
+    @Test
+    void testReturnChangeNumberSecondTest(){
+        ArrayList<Coin> money = new ArrayList<>();
+        money.add(Coin.QUARTER);
+        money.add(Coin.QUARTER);
+        money.add(Coin.QUARTER);
+        money.add(Coin.QUARTER);
+        money.add(Coin.QUARTER);
+        money.add(Coin.QUARTER);
+        money.add(Coin.QUARTER);
+        money.add(Coin.DIME);
+        money.add(Coin.NICKEL);
+        money.add(Coin.NICKEL);
+        money.add(Coin.PENNY);
+        money.add(Coin.PENNY);
+        money.add(Coin.PENNY);
+        money.add(Coin.PENNY);
+        money.add(Coin.PENNY);
+        VendingMachine myMachine = new VendingMachine();
+        ArrayList<Coin> userInput = myMachine.inputCoins(money);
+        double inputMoney = myMachine.getHowMuchMoneyWasInserted(userInput);
+        myMachine.selectItem(Item.COLA);
+        double change = myMachine.returnChangeNumber();
+        assertEquals(0.95, Math.round(change*100)/100D);
     }
 
     @Test
@@ -48,25 +87,25 @@ public class ReturnChangeTests {
         assertEquals(0.25, change);
     }
 
-    @Test
-    void testReturnChangeNumberSecondTest(){
-        ArrayList<Coin> money = new ArrayList<>(); //$1.45
-        money.add(Coin.QUARTER);
-        money.add(Coin.QUARTER);
-        money.add(Coin.QUARTER);
-        money.add(Coin.QUARTER);
-        money.add(Coin.QUARTER);
-        money.add(Coin.QUARTER);
-        money.add(Coin.NICKEL); //0.05
-        money.add(Coin.DIME); //0.10
-        money.add(Coin.NICKEL);
-        VendingMachine myMachine = new VendingMachine();
-        ArrayList<Coin> userInput = myMachine.inputCoins(money);
-        double inputMoney = myMachine.getHowMuchMoneyWasInserted(userInput);
-        myMachine.selectItem(Item.COLA);
-        double change = myMachine.returnChangeNumber();
-        assertEquals(0.70, Math.round(change*100)/100D);
-    }
+//    @Test
+//    void testReturnChangeNumberSecondTest(){
+//        ArrayList<Coin> money = new ArrayList<>(); //$1.45
+//        money.add(Coin.QUARTER);
+//        money.add(Coin.QUARTER);
+//        money.add(Coin.QUARTER);
+//        money.add(Coin.QUARTER);
+//        money.add(Coin.QUARTER);
+//        money.add(Coin.QUARTER);
+//        money.add(Coin.NICKEL); //0.05
+//        money.add(Coin.DIME); //0.10
+//        money.add(Coin.NICKEL);
+//        VendingMachine myMachine = new VendingMachine();
+//        ArrayList<Coin> userInput = myMachine.inputCoins(money);
+//        double inputMoney = myMachine.getHowMuchMoneyWasInserted(userInput);
+//        myMachine.selectItem(Item.COLA);
+//        double change = myMachine.returnChangeNumber();
+//        assertEquals(0.70, Math.round(change*100)/100D);
+//    }
 
     @Test
     void testReturnChangeTest1(){
