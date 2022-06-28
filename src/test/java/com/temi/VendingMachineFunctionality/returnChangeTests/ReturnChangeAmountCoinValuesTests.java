@@ -35,6 +35,7 @@ public class ReturnChangeAmountCoinValuesTests {
         myInput.add(Coin.QUARTER);
         myInput.add(Coin.QUARTER);
         myInput.add(Coin.QUARTER);
+        myMachine.getHowMuchMoneyWasInserted(myInput);
         myMachine.selectItem(Item.COLA);
         ArrayList<Double> change = myMachine.returnChangeAmount();
         ArrayList<Double> answer = new ArrayList<>();
@@ -54,6 +55,7 @@ public class ReturnChangeAmountCoinValuesTests {
         myInput.add(Coin.QUARTER);
         myInput.add(Coin.PENNY);
         myInput.add(Coin.PENNY);
+        myMachine.getHowMuchMoneyWasInserted(myInput);
         myMachine.selectItem(Item.COLA);
         ArrayList<Double> change = myMachine.returnChangeAmount();
         ArrayList<Double> answer = new ArrayList<>();

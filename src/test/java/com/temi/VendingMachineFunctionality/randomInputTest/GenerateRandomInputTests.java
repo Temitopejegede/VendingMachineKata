@@ -1,4 +1,4 @@
-package com.temi.VendingMachineFunctionality;
+package com.temi.VendingMachineFunctionality.randomInputTest;
 
 import com.temi.coins.Coin;
 import com.temi.inputs.Inputs;
