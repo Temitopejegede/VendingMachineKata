@@ -9,30 +9,35 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class VendingMachine {
+    /**
+     * value of coins
+     */
     private static final double QUARTERVALUE = 0.25;
     private static final double DIMEVALUE = 0.10;
     private static final double NICKELVALUE = 0.05;
     private static final double PENNYVALUE = 0.01;
 
-
-
-
+    /**
+     * price of items
+     */
     private static final double PRICEOFCOLA = 1.00;
     private static final double PRICEOFCHIPS = 0.50;
     private static final double PRICEOFCANDY = 0.65;
     HashMap<Coin, Double> coinValueMap = new HashMap<>();
     HashMap<Item, Double> itemValueMap = new HashMap<>();
+
+    HashMap<Item, Integer> itemQuantityMap = new HashMap<>();
+
+    /**
+     * keeps track of how much money is in the vending machine
+     */
     private double money;
-
-
-
-    //think of method to generate arraylist with custom number of values and coins
-    ArrayList<Coin> inputs = new Inputs().generateRandomCoins();
 
 
     public VendingMachine(){
         mapCoinValue();
         mapItemValue();
+        mapItemQuantity();
     }
 
     public String checkDisplay(){
@@ -43,6 +48,10 @@ public class VendingMachine {
     }
     public String displayWhenMoneyIsNotEnough(Item item){
         return "PRICE: "+ itemValueMap.get(item);
+    }
+
+    public String display(String message){
+        return message;
     }
 
     public void mapCoinValue(){
@@ -58,6 +67,11 @@ public class VendingMachine {
         itemValueMap.put(Item.CHIPS, PRICEOFCHIPS);
     }
 
+    public void mapItemQuantity(){
+        itemQuantityMap.put(Item.COLA, 7);
+        itemQuantityMap.put(Item.CHIPS, 5);
+        itemQuantityMap.put(Item.CANDY, 6);
+    }
 
 
     public Coin measureCoinDimensions(Coin myCoin){
@@ -114,7 +128,14 @@ public class VendingMachine {
 //        if(getHowMuchMoneyWasInserted(inputs) >= itemValueMap.get(snack)){
 //            checkDisplayWhenItemHasJustBeenBought();
 //        }
-        this.money = this.money - itemValueMap.get(snack);
+        if(itemQuantityMap.get(snack) > 0){
+            this.money = this.money - itemValueMap.get(snack);
+            itemQuantityMap.replace(snack, itemQuantityMap.get(snack) - 1);
+        } else{
+            display("OUT OF STOCK");
+        }
+
+
     }
 
     public ArrayList<Coin> inputCoins(ArrayList<Coin> coins){
@@ -134,6 +155,7 @@ public class VendingMachine {
 
     while (temp > 0) {
         if (temp >= (int) (QUARTERVALUE * 100)) {
+            changeInCoins.add(0.0001);
             divisor =  (temp / (int) (QUARTERVALUE * 100));
             for (int i = 0; i < divisor; i++) changeInCoins.add(QUARTERVALUE);
             temp -= (int) (QUARTERVALUE * 100) * divisor;
@@ -142,22 +164,18 @@ public class VendingMachine {
             divisor =  (temp / (int) (DIMEVALUE * 100));
             for (int i = 0; i < divisor; i++) changeInCoins.add(DIMEVALUE);
             temp -=  (int) (DIMEVALUE * 100) * divisor;
-
         }
         if (temp >= (int) (NICKELVALUE * 100)) {
             divisor =  (temp / (int) (NICKELVALUE * 100));
             for (int i = 0; i < divisor; i++) changeInCoins.add(NICKELVALUE);
             temp -= (int) (NICKELVALUE * 100) * divisor;
-
         }
         if(temp >= (int)(PENNYVALUE*100)) {
             divisor =  temp ;
             for (int i = 0; i < divisor; i++) changeInCoins.add(PENNYVALUE);
             temp -= divisor;
-
         }
     }
-
         return changeInCoins;
     }
 
