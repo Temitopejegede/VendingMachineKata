@@ -1,7 +1,6 @@
-package com.temi.VendingMachineFunctionality.returnChange;
+package com.temi.VendingMachineFunctionality.returnChangeTests;
 
 import com.temi.coins.Coin;
-import com.temi.inputs.Inputs;
 import com.temi.item.Item;
 import com.temi.vendingMachineFunctionality.VendingMachine;
 import org.junit.jupiter.api.Test;

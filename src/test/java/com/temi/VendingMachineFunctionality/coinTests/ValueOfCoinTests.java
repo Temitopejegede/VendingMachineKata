@@ -1,4 +1,4 @@
-package com.temi.VendingMachineFunctionality;
+package com.temi.VendingMachineFunctionality.coinTests;
 
 import com.temi.coins.*;
 import com.temi.vendingMachineFunctionality.VendingMachine;

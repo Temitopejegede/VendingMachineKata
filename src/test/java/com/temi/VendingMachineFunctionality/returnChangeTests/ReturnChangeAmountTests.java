@@ -1,4 +1,4 @@
-package com.temi.VendingMachineFunctionality.returnChange;
+package com.temi.VendingMachineFunctionality.returnChangeTests;
 
 import com.temi.coins.Coin;
 import com.temi.item.Item;
