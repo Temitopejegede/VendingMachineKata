@@ -195,7 +195,7 @@ public class VendingMachine {
             return changeInCoins;
     }
 
-    public ArrayList<String> returnChangeInCoins(double money){
+    public ArrayList<String> returnChangeInCoins(){
         return convertNumberToCoins(money);
     }
 
