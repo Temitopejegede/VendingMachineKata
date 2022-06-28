@@ -40,6 +40,13 @@ public class VendingMachine {
         mapItemQuantity();
     }
 
+    public VendingMachine(int cokeQuantity, int chipsQuantity, int candyQuantity){
+        mapCoinValue();
+        mapItemValue();
+        mapItemQuantity(cokeQuantity, chipsQuantity, candyQuantity);
+    }
+
+
     public String checkDisplay(){
         return "INSERT COIN";
     }
@@ -67,10 +74,16 @@ public class VendingMachine {
         itemValueMap.put(Item.CHIPS, PRICEOFCHIPS);
     }
 
+    public void mapItemQuantity(int coke, int chips, int candy){
+        itemQuantityMap.put(Item.COLA, coke);
+        itemQuantityMap.put(Item.CHIPS, chips);
+        itemQuantityMap.put(Item.CANDY, candy);
+    }
+
     public void mapItemQuantity(){
         itemQuantityMap.put(Item.COLA, 7);
-        itemQuantityMap.put(Item.CHIPS, 5);
-        itemQuantityMap.put(Item.CANDY, 6);
+        itemQuantityMap.put(Item.CHIPS, 6);
+        itemQuantityMap.put(Item.CANDY, 5);
     }
 
 
@@ -120,19 +133,17 @@ public class VendingMachine {
         }
         return  money;
     }
-    public void selectItem(Item snack){
-//        if(getHowMuchMoneyWasInserted(inputs) < itemValueMap.get(snack) ){
-//            displayWhenMoneyIsNotEnough(snack);
-//        }
-//
-//        if(getHowMuchMoneyWasInserted(inputs) >= itemValueMap.get(snack)){
-//            checkDisplayWhenItemHasJustBeenBought();
-//        }
+    public String selectItem(Item snack){
+
         if(itemQuantityMap.get(snack) > 0){
+            if((int)(money*100) < (int)(itemValueMap.get(snack)*100)) {
+                return display("PRICE: " + itemValueMap.get(snack));
+            }
             this.money = this.money - itemValueMap.get(snack);
             itemQuantityMap.replace(snack, itemQuantityMap.get(snack) - 1);
+            return display("THANK YOU");
         } else{
-            display("OUT OF STOCK");
+            return display("OUT OF STOCK");
         }
 
 
@@ -155,7 +166,6 @@ public class VendingMachine {
 
     while (temp > 0) {
         if (temp >= (int) (QUARTERVALUE * 100)) {
-            changeInCoins.add(0.0001);
             divisor =  (temp / (int) (QUARTERVALUE * 100));
             for (int i = 0; i < divisor; i++) changeInCoins.add(QUARTERVALUE);
             temp -= (int) (QUARTERVALUE * 100) * divisor;
