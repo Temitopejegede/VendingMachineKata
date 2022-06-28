@@ -44,4 +44,22 @@ public class ReturnChangeAmountCoinValuesTests {
         answer.add(0.10);
         assertEquals(answer, change);
     }
+
+    @Test
+    void returnChangeAmountCoinValueThirdTest(){
+        VendingMachine myMachine = new VendingMachine();
+        ArrayList<Coin> myInput = new ArrayList<>();
+        myInput.add(Coin.QUARTER);
+        myInput.add(Coin.QUARTER);
+        myInput.add(Coin.QUARTER);
+        myInput.add(Coin.QUARTER);
+        myInput.add(Coin.QUARTER);
+        myInput.add(Coin.PENNY);
+        myInput.add(Coin.PENNY);
+        myMachine.selectItem(Item.COLA);
+        ArrayList<Double> change = myMachine.returnChangeAmount();
+        ArrayList<Double> answer = new ArrayList<>();
+        answer.add(0.25);
+        assertEquals(answer, change);
+    }
 }
