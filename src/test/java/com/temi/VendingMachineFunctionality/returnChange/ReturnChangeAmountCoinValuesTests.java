@@ -35,13 +35,12 @@ public class ReturnChangeAmountCoinValuesTests {
         myInput.add(Coin.QUARTER);
         myInput.add(Coin.QUARTER);
         myInput.add(Coin.QUARTER);
-        myInput.add(Coin.DIME);
-        myInput.add(Coin.PENNY);
+        myInput.add(Coin.QUARTER);
         myMachine.selectItem(Item.COLA);
         ArrayList<Double> change = myMachine.returnChangeAmount();
         ArrayList<Double> answer = new ArrayList<>();
         answer.add(0.25);
-        answer.add(0.10);
+        answer.add(0.25);
         assertEquals(answer, change);
     }
 
