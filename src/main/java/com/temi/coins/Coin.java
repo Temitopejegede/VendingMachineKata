@@ -8,15 +8,15 @@ public enum Coin {
     private final String DIAMETER;
     private final String THICKNESS;
     private final String EDGE;
-    private final String NUMBEROFREEDS;
+    private final String NUMBER_OF_REEDS;
 
-    Coin(String NAME, String WEIGHT, String DIAMETER, String THICKNESS, String EDGE, String NUMBEROFREEDS) {
+    Coin(String NAME, String WEIGHT, String DIAMETER, String THICKNESS, String EDGE, String NUMBER_OF_REEDS) {
         this.NAME = NAME;
         this.WEIGHT = WEIGHT;
         this.DIAMETER = DIAMETER;
         this.THICKNESS = THICKNESS;
         this.EDGE = EDGE;
-        this.NUMBEROFREEDS = NUMBEROFREEDS;
+        this.NUMBER_OF_REEDS = NUMBER_OF_REEDS;
     }
 
     public String getWEIGHT() {
@@ -35,8 +35,8 @@ public enum Coin {
         return EDGE;
     }
 
-    public String getNUMBEROFREEDS() {
-        return NUMBEROFREEDS;
+    public String getNUMBER_OF_REEDS() {
+        return NUMBER_OF_REEDS;
     }
 
     public String getNAME() {
@@ -45,6 +45,6 @@ public enum Coin {
 
     @Override
     public String toString() {
-        return "Coin{" + "WEIGHT=" + WEIGHT + ", DIAMETER=" + DIAMETER + ", THICKNESS=" + THICKNESS + ", EDGE='" + EDGE + '\'' + ", NUMBEROFREEDS=" + NUMBEROFREEDS + '}';
+        return "Coin{" + "WEIGHT=" + WEIGHT + ", DIAMETER=" + DIAMETER + ", THICKNESS=" + THICKNESS + ", EDGE='" + EDGE + '\'' + ", NUMBEROFREEDS=" + NUMBER_OF_REEDS + '}';
     }
 }

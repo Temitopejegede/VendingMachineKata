@@ -10,17 +10,17 @@ public class VendingMachine {
     /**
      * value of coins
      */
-    private static final double QUARTERVALUE = 0.25;
-    private static final double DIMEVALUE = 0.10;
-    private static final double NICKELVALUE = 0.05;
-    private static final double PENNYVALUE = 0.01;
+    private static final double QUARTER_VALUE = 0.25;
+    private static final double DIME_VALUE = 0.10;
+    private static final double NICKEL_VALUE = 0.05;
+    private static final double PENNY_VALUE = 0.01;
 
     /**
      * price of items
      */
-    private static final double PRICEOFCOLA = 1.00;
-    private static final double PRICEOFCHIPS = 0.50;
-    private static final double PRICEOFCANDY = 0.65;
+    private static final double PRICE_OF_COLA = 1.00;
+    private static final double PRICE_OF_CHIPS = 0.50;
+    private static final double PRICE_OF_CANDY = 0.65;
     HashMap<Coin, Double> coinValueMap = new HashMap<>();
     HashMap<Item, Double> itemValueMap = new HashMap<>();
 
@@ -61,16 +61,16 @@ public class VendingMachine {
 
 
     public void mapCoinValue() {
-        coinValueMap.put(Coin.PENNY, PENNYVALUE);
-        coinValueMap.put(Coin.NICKEL, NICKELVALUE);
-        coinValueMap.put(Coin.DIME, DIMEVALUE);
-        coinValueMap.put(Coin.QUARTER, QUARTERVALUE);
+        coinValueMap.put(Coin.PENNY, PENNY_VALUE);
+        coinValueMap.put(Coin.NICKEL, NICKEL_VALUE);
+        coinValueMap.put(Coin.DIME, DIME_VALUE);
+        coinValueMap.put(Coin.QUARTER, QUARTER_VALUE);
     }
 
     public void mapItemValue() {
-        itemValueMap.put(Item.COLA, PRICEOFCOLA);
-        itemValueMap.put(Item.CANDY, PRICEOFCANDY);
-        itemValueMap.put(Item.CHIPS, PRICEOFCHIPS);
+        itemValueMap.put(Item.COLA, PRICE_OF_COLA);
+        itemValueMap.put(Item.CANDY, PRICE_OF_CANDY);
+        itemValueMap.put(Item.CHIPS, PRICE_OF_CHIPS);
     }
 
     public void mapItemQuantity(int coke, int chips, int candy) {
@@ -105,14 +105,14 @@ public class VendingMachine {
 
     public Coin measureCoinDimensions(Coin myCoin) {
         if (myCoin.getEDGE().equals("plain")) {
-            if (myCoin.getWEIGHT().equals("2.5") && myCoin.getDIAMETER().equals("19.05") && myCoin.getTHICKNESS().equals("1.52") && myCoin.getNUMBEROFREEDS().equals("0"))
+            if (myCoin.getWEIGHT().equals("2.5") && myCoin.getDIAMETER().equals("19.05") && myCoin.getTHICKNESS().equals("1.52") && myCoin.getNUMBER_OF_REEDS().equals("0"))
                 return Coin.PENNY;
-            if (myCoin.getWEIGHT().equals("5.0") && myCoin.getDIAMETER().equals("21.21") && myCoin.getTHICKNESS().equals("1.95") && myCoin.getNUMBEROFREEDS().equals("0"))
+            if (myCoin.getWEIGHT().equals("5.0") && myCoin.getDIAMETER().equals("21.21") && myCoin.getTHICKNESS().equals("1.95") && myCoin.getNUMBER_OF_REEDS().equals("0"))
                 return Coin.NICKEL;
         } else {
-            if (myCoin.getWEIGHT().equals("2.268") && myCoin.getDIAMETER().equals("17.91") && myCoin.getTHICKNESS().equals("1.35") && myCoin.getNUMBEROFREEDS().equals("118"))
+            if (myCoin.getWEIGHT().equals("2.268") && myCoin.getDIAMETER().equals("17.91") && myCoin.getTHICKNESS().equals("1.35") && myCoin.getNUMBER_OF_REEDS().equals("118"))
                 return Coin.DIME;
-            if (myCoin.getWEIGHT().equals("5.670") && myCoin.getDIAMETER().equals("24.26") && myCoin.getTHICKNESS().equals("1.75") && myCoin.getNUMBEROFREEDS().equals("119"))
+            if (myCoin.getWEIGHT().equals("5.670") && myCoin.getDIAMETER().equals("24.26") && myCoin.getTHICKNESS().equals("1.75") && myCoin.getNUMBER_OF_REEDS().equals("119"))
                 return Coin.QUARTER;
         }
         return null;
@@ -177,24 +177,24 @@ public class VendingMachine {
         int divisor;
 
         while (temp > 0) {
-            if (temp >= (int) (QUARTERVALUE * 100)) {
-                divisor = (temp / (int) (QUARTERVALUE * 100));
-                for (int i = 0; i < divisor; i++) changeInCoins.add(QUARTERVALUE);
-                temp -= (int) (QUARTERVALUE * 100) * divisor;
+            if (temp >= (int) (QUARTER_VALUE * 100)) {
+                divisor = (temp / (int) (QUARTER_VALUE * 100));
+                for (int i = 0; i < divisor; i++) changeInCoins.add(QUARTER_VALUE);
+                temp -= (int) (QUARTER_VALUE * 100) * divisor;
             }
-            if (temp >= (int) (DIMEVALUE * 100)) {
-                divisor = (temp / (int) (DIMEVALUE * 100));
-                for (int i = 0; i < divisor; i++) changeInCoins.add(DIMEVALUE);
-                temp -= (int) (DIMEVALUE * 100) * divisor;
+            if (temp >= (int) (DIME_VALUE * 100)) {
+                divisor = (temp / (int) (DIME_VALUE * 100));
+                for (int i = 0; i < divisor; i++) changeInCoins.add(DIME_VALUE);
+                temp -= (int) (DIME_VALUE * 100) * divisor;
             }
-            if (temp >= (int) (NICKELVALUE * 100)) {
-                divisor = (temp / (int) (NICKELVALUE * 100));
-                for (int i = 0; i < divisor; i++) changeInCoins.add(NICKELVALUE);
-                temp -= (int) (NICKELVALUE * 100) * divisor;
+            if (temp >= (int) (NICKEL_VALUE * 100)) {
+                divisor = (temp / (int) (NICKEL_VALUE * 100));
+                for (int i = 0; i < divisor; i++) changeInCoins.add(NICKEL_VALUE);
+                temp -= (int) (NICKEL_VALUE * 100) * divisor;
             }
-            if (temp >= (int) (PENNYVALUE * 100)) {
+            if (temp >= (int) (PENNY_VALUE * 100)) {
                 divisor = temp;
-                for (int i = 0; i < divisor; i++) changeInCoins.add(PENNYVALUE);
+                for (int i = 0; i < divisor; i++) changeInCoins.add(PENNY_VALUE);
                 temp -= divisor;
             }
         }
@@ -211,22 +211,22 @@ public class VendingMachine {
         int divisor;
 
         while (temp > 0) {
-            if (temp >= (int) (QUARTERVALUE * 100)) {
-                divisor = temp / (int) (QUARTERVALUE * 100);
+            if (temp >= (int) (QUARTER_VALUE * 100)) {
+                divisor = temp / (int) (QUARTER_VALUE * 100);
                 for (int i = 0; i < divisor; i++) changeInCoins.add(Coin.QUARTER.getNAME());
-                temp -= (int) (QUARTERVALUE * 100) * divisor;
+                temp -= (int) (QUARTER_VALUE * 100) * divisor;
             }
-            if (temp >= (int) (DIMEVALUE * 100)) {
-                divisor = temp / (int) (DIMEVALUE * 100);
+            if (temp >= (int) (DIME_VALUE * 100)) {
+                divisor = temp / (int) (DIME_VALUE * 100);
                 for (int i = 0; i < divisor; i++) changeInCoins.add(Coin.DIME.getNAME());
-                temp -= (int) (DIMEVALUE * 100) * divisor;
+                temp -= (int) (DIME_VALUE * 100) * divisor;
             }
-            if (temp >= (int) (NICKELVALUE * 100)) {
-                divisor = temp / (int) (NICKELVALUE * 100);
+            if (temp >= (int) (NICKEL_VALUE * 100)) {
+                divisor = temp / (int) (NICKEL_VALUE * 100);
                 for (int i = 0; i < divisor; i++) changeInCoins.add(Coin.NICKEL.getNAME());
-                temp -= (int) (NICKELVALUE * 100) * divisor;
+                temp -= (int) (NICKEL_VALUE * 100) * divisor;
             }
-            if (temp >= (int) (PENNYVALUE * 100)) {
+            if (temp >= (int) (PENNY_VALUE * 100)) {
                 divisor = temp;
                 for (int i = 0; i < divisor; i++) changeInCoins.add(Coin.PENNY.getNAME());
                 temp -= divisor;
