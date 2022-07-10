@@ -2,28 +2,16 @@ package com.temi.vendingMachineFunctionality;
 
 import com.temi.coins.Coin;
 import com.temi.item.Item;
+import com.temi.utils.AppConstants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class VendingMachine {
-    /**
-     * value of coins
-     */
-    private static final double QUARTER_VALUE = 0.25;
-    private static final double DIME_VALUE = 0.10;
-    private static final double NICKEL_VALUE = 0.05;
-    private static final double PENNY_VALUE = 0.01;
 
-    /**
-     * price of items
-     */
-    private static final double PRICE_OF_COLA = 1.00;
-    private static final double PRICE_OF_CHIPS = 0.50;
-    private static final double PRICE_OF_CANDY = 0.65;
+public class VendingMachine {
+
     HashMap<Coin, Double> coinValueMap = new HashMap<>();
     HashMap<Item, Double> itemValueMap = new HashMap<>();
-
     HashMap<Item, Integer> itemQuantityMap = new HashMap<>();
 
     /**
@@ -61,16 +49,16 @@ public class VendingMachine {
 
 
     public void mapCoinValue() {
-        coinValueMap.put(Coin.PENNY, PENNY_VALUE);
-        coinValueMap.put(Coin.NICKEL, NICKEL_VALUE);
-        coinValueMap.put(Coin.DIME, DIME_VALUE);
-        coinValueMap.put(Coin.QUARTER, QUARTER_VALUE);
+        coinValueMap.put(Coin.PENNY, AppConstants.PENNY_VALUE);
+        coinValueMap.put(Coin.NICKEL, AppConstants.NICKEL_VALUE);
+        coinValueMap.put(Coin.DIME, AppConstants.DIME_VALUE);
+        coinValueMap.put(Coin.QUARTER, AppConstants.QUARTER_VALUE);
     }
 
     public void mapItemValue() {
-        itemValueMap.put(Item.COLA, PRICE_OF_COLA);
-        itemValueMap.put(Item.CANDY, PRICE_OF_CANDY);
-        itemValueMap.put(Item.CHIPS, PRICE_OF_CHIPS);
+        itemValueMap.put(Item.COLA, AppConstants.PRICE_OF_COLA);
+        itemValueMap.put(Item.CANDY, AppConstants.PRICE_OF_CANDY);
+        itemValueMap.put(Item.CHIPS, AppConstants.PRICE_OF_CHIPS);
     }
 
     public void mapItemQuantity(int coke, int chips, int candy) {
@@ -177,24 +165,24 @@ public class VendingMachine {
         int divisor;
 
         while (temp > 0) {
-            if (temp >= (int) (QUARTER_VALUE * 100)) {
-                divisor = (temp / (int) (QUARTER_VALUE * 100));
-                for (int i = 0; i < divisor; i++) changeInCoins.add(QUARTER_VALUE);
-                temp -= (int) (QUARTER_VALUE * 100) * divisor;
+            if (temp >= (int) (AppConstants.QUARTER_VALUE * 100)) {
+                divisor = (temp / (int) (AppConstants.QUARTER_VALUE * 100));
+                for (int i = 0; i < divisor; i++) changeInCoins.add(AppConstants.QUARTER_VALUE);
+                temp -= (int) (AppConstants.QUARTER_VALUE * 100) * divisor;
             }
-            if (temp >= (int) (DIME_VALUE * 100)) {
-                divisor = (temp / (int) (DIME_VALUE * 100));
-                for (int i = 0; i < divisor; i++) changeInCoins.add(DIME_VALUE);
-                temp -= (int) (DIME_VALUE * 100) * divisor;
+            if (temp >= (int) (AppConstants.DIME_VALUE * 100)) {
+                divisor = (temp / (int) (AppConstants.DIME_VALUE * 100));
+                for (int i = 0; i < divisor; i++) changeInCoins.add(AppConstants.DIME_VALUE);
+                temp -= (int) (AppConstants.DIME_VALUE * 100) * divisor;
             }
-            if (temp >= (int) (NICKEL_VALUE * 100)) {
-                divisor = (temp / (int) (NICKEL_VALUE * 100));
-                for (int i = 0; i < divisor; i++) changeInCoins.add(NICKEL_VALUE);
-                temp -= (int) (NICKEL_VALUE * 100) * divisor;
+            if (temp >= (int) (AppConstants.NICKEL_VALUE * 100)) {
+                divisor = (temp / (int) (AppConstants.NICKEL_VALUE * 100));
+                for (int i = 0; i < divisor; i++) changeInCoins.add(AppConstants.NICKEL_VALUE);
+                temp -= (int) (AppConstants.NICKEL_VALUE * 100) * divisor;
             }
-            if (temp >= (int) (PENNY_VALUE * 100)) {
+            if (temp >= (int) (AppConstants.PENNY_VALUE * 100)) {
                 divisor = temp;
-                for (int i = 0; i < divisor; i++) changeInCoins.add(PENNY_VALUE);
+                for (int i = 0; i < divisor; i++) changeInCoins.add(AppConstants.PENNY_VALUE);
                 temp -= divisor;
             }
         }
@@ -211,22 +199,22 @@ public class VendingMachine {
         int divisor;
 
         while (temp > 0) {
-            if (temp >= (int) (QUARTER_VALUE * 100)) {
-                divisor = temp / (int) (QUARTER_VALUE * 100);
+            if (temp >= (int) (AppConstants.QUARTER_VALUE * 100)) {
+                divisor = temp / (int) (AppConstants.QUARTER_VALUE * 100);
                 for (int i = 0; i < divisor; i++) changeInCoins.add(Coin.QUARTER.getNAME());
-                temp -= (int) (QUARTER_VALUE * 100) * divisor;
+                temp -= (int) (AppConstants.QUARTER_VALUE * 100) * divisor;
             }
-            if (temp >= (int) (DIME_VALUE * 100)) {
-                divisor = temp / (int) (DIME_VALUE * 100);
+            if (temp >= (int) (AppConstants.DIME_VALUE * 100)) {
+                divisor = temp / (int) (AppConstants.DIME_VALUE * 100);
                 for (int i = 0; i < divisor; i++) changeInCoins.add(Coin.DIME.getNAME());
-                temp -= (int) (DIME_VALUE * 100) * divisor;
+                temp -= (int) (AppConstants.DIME_VALUE * 100) * divisor;
             }
-            if (temp >= (int) (NICKEL_VALUE * 100)) {
-                divisor = temp / (int) (NICKEL_VALUE * 100);
+            if (temp >= (int) (AppConstants.NICKEL_VALUE * 100)) {
+                divisor = temp / (int) (AppConstants.NICKEL_VALUE * 100);
                 for (int i = 0; i < divisor; i++) changeInCoins.add(Coin.NICKEL.getNAME());
-                temp -= (int) (NICKEL_VALUE * 100) * divisor;
+                temp -= (int) (AppConstants.NICKEL_VALUE * 100) * divisor;
             }
-            if (temp >= (int) (PENNY_VALUE * 100)) {
+            if (temp >= (int) (AppConstants.PENNY_VALUE * 100)) {
                 divisor = temp;
                 for (int i = 0; i < divisor; i++) changeInCoins.add(Coin.PENNY.getNAME());
                 temp -= divisor;
